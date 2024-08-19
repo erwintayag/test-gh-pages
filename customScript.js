@@ -1,4 +1,5 @@
 console.log("This is a custom script from GH...");
+debugger;
 // Hide the username and password fields initially
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("email").style.display = "block";
