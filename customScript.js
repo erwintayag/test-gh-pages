@@ -3,12 +3,14 @@ console.log("This is a custom script from GH...");
 
 // Toggle the details fields
 function fnSetDetailsFieldsDisplay(isDisplay) {
-    let display = isDisplay ? 'block' : 'none';
-    document.getElementById("newPassword").style.display = display;
-    document.getElementById("reenterPassword").style.display = display;
-    document.getElementById("givenName").style.display = display;
-    document.getElementById("surname").style.display = display;
-    document.getElementById("continue").style.display = display;
+    if(document && document !== 'undefined') {
+        let display = isDisplay ? 'block' : 'none';
+        document.getElementById("newPassword").style.display = display;
+        document.getElementById("reenterPassword").style.display = display;
+        document.getElementById("givenName").style.display = display;
+        document.getElementById("surname").style.display = display;
+        document.getElementById("continue").style.display = display;
+    }
 }
 
 // // Show the username and password fields after verification
