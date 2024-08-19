@@ -16,7 +16,7 @@ function showPasswordFields() {
 }
 
 // Hook into the verification process
-document.getElementById("verifyButton").addEventListener("click", function() {
+document.getElementById("email_ver_but_send").addEventListener("click", function() {
     // Assuming the verification is successful
     showPasswordFields();
 });
