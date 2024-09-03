@@ -89,6 +89,7 @@ var applyB2CAddOns = function() {
     var intervalHandle = setInterval(
         function () {
             if (window.pageReady) {
+                console.log("custom script...");
                 applyB2CAddOns();
                 clearInterval(intervalHandle);
             }
