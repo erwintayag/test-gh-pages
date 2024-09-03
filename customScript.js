@@ -14,8 +14,8 @@ var applyB2CAddOns = function() {
     }
 
     // Correcting the order of sendCode and VerifyCode order.
-    sendNewCodeBtn.remove();
-    verifyCodeBtn.parentElement.insertBefore(sendNewCodeBtn, verifyCodeBtn);
+    // sendNewCodeBtn.remove();
+    // verifyCodeBtn.parentElement.insertBefore(sendNewCodeBtn, verifyCodeBtn);
 
     var readyToRedirect = false;
     $element.confirm = function() {
@@ -57,7 +57,7 @@ var applyB2CAddOns = function() {
 
         // Continue the page once email is validated.
         var verifyInterval = setInterval(function() {
-            if ($element.verificationInfo.emailVerificationControl) {
+            if ($element.verificationInfo.email.confirmation.success) {
                 clearInterval(verifyInterval);
                 $element.verify();
                 cancelBtn.style.display = "none";
