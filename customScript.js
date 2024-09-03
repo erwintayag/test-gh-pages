@@ -2,9 +2,9 @@
 console.log("custom script start");
 var applyB2CAddOns = function() {
 
-    var verifyCodeBtn = document.querySelector(".verifyCode");
-    var sendNewCodeBtn = document.querySelector(".sendNewCode");
-    var changeEmailBtn = document.querySelector(".changeClaims");
+    var verifyCodeBtn = document.querySelector(".verifyButton");
+    var sendNewCodeBtn = document.querySelector(".sendButton");
+    var changeEmailBtn = document.querySelector(".editButton");
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
 
