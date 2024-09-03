@@ -1,5 +1,5 @@
 // This example shows how to remove the "Continue" button on the email verification page in favor of automatic redirect when email is successfully verified.
-
+console.log("custom script start");
 var applyB2CAddOns = function() {
 
     var verifyCodeBtn = document.querySelector(".verifyCode");
