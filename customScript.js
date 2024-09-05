@@ -8,9 +8,9 @@ var applyB2CAddOns = function() {
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
 
-    // if (continueBtn) {
-    //     continueBtn.remove();
-    // }
+    if (continueBtn) {
+        continueBtn.remove();
+    }
     
     var readyToRedirect = false;
     $element.confirm = function() {
