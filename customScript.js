@@ -90,27 +90,27 @@ var applyB2CAddOns = function() {
             }
         }, 50);
     }
-};
 
-var decodeDefaultValuesFromQueryParams = function () {
-    // inputs
-    var firstName = document.querySelector("#givenName");
-    var lastName = document.querySelector("#surname");
-    var countryCode = document.querySelector("#inputCountryCode");
-    var phoneNumber = document.querySelector("#inputPhoneNumber");
-
-    var queryParams = new URLSearchParams(window.location.search);
-    var firstNameValue = queryParams.get('first_name');
-    if (firstNameValue) {
-        // firstName.value = decodeURIComponent(firstNameValue);
-        console.log("test:" + firstNameValue);
-        firstName.value = decodeURIComponent(firstNameValue);
+    function decodeDefaultValuesFromQueryParams() {
+        // inputs
+        var firstName = document.querySelector("#givenName");
+        var lastName = document.querySelector("#surname");
+        var countryCode = document.querySelector("#inputCountryCode");
+        var phoneNumber = document.querySelector("#inputPhoneNumber");
+    
+        var queryParams = new URLSearchParams(window.location.search);
+        var firstNameValue = queryParams.get('first_name');
+        if (firstNameValue) {
+            // firstName.value = decodeURIComponent(firstNameValue);
+            console.log("test:" + firstNameValue);
+            firstName.value = decodeURIComponent(firstNameValue);
+        }
+    
+        // if (firstName) {
+        //     firstName.value = atob(firstName.value);
+        // }
     }
-
-    // if (firstName) {
-    //     firstName.value = atob(firstName.value);
-    // }
-}
+};
 
 (function onPageReady() {
     var intervalHandle = setInterval(
