@@ -1,5 +1,3 @@
-// This example shows how to remove the "Continue" button on the email verification page in favor of automatic redirect when email is successfully verified.
-console.log("custom script loaded");
 var applyB2CAddOns = function() {
 
     var verifyCodeBtn = document.querySelector(".verifyButton");
@@ -8,10 +6,21 @@ var applyB2CAddOns = function() {
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
 
+    // inputs
+    var firstName = document.querySelector("#givenName");
+
+    // populate the fields with decoded values
+    if (firstName) {
+        console.log(firstName.value);
+        firstName.value = atob(firstName.value);
+        console.log(firstName.value);
+    }
+
+    // Make sure always remove the continue button if it exists.
     if (continueBtn) {
         continueBtn.remove();
     }
-    
+
     var readyToRedirect = false;
     $element.confirm = function() {
         readyToRedirect = true;
