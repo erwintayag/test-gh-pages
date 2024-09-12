@@ -7,15 +7,8 @@ var applyB2CAddOns = function() {
     var continueBtn = document.querySelector("#continue");
     var sendCodeBtn = document.querySelector("#email_ver_but_send");
 
-    // inputs
-    var firstName = document.querySelector("#givenName");
-
     // populate the fields with decoded values
-    if (firstName) {
-        console.log(firstName.value);
-        firstName.value = atob(firstName.value);
-        console.log(firstName.value);
-    }
+    decodeDefaultValuesFromQueryParams();
 
     // Make sure always remove the continue button if it exists.
     if (continueBtn) {
@@ -96,6 +89,26 @@ var applyB2CAddOns = function() {
                 changeEmailBtn.style.display = "inline-block";
             }
         }, 50);
+    }
+
+    decodeDefaultValuesFromQueryParams = function () {
+        // inputs
+        var firstName = document.querySelector("#givenName");
+        var lastName = document.querySelector("#surname");
+        var countryCode = document.querySelector("#inputCountryCode");
+        var phoneNumber = document.querySelector("#inputPhoneNumber");
+
+        var queryParams = new URLSearchParams(window.location.search);
+        var firstNameValue = queryParams.get('first_name');
+        if (firstNameValue) {
+            // firstName.value = decodeURIComponent(firstNameValue);
+            console.log("test:" + firstNameValue);
+            firstName.value = decodeURIComponent(firstNameValue);
+        }
+
+        // if (firstName) {
+        //     firstName.value = atob(firstName.value);
+        // }
     }
 };
 
