@@ -91,7 +91,7 @@ var applyB2CAddOns = function() {
         }, 50);
     }
 
-    decodeDefaultValuesFromQueryParams = function () {
+    var decodeDefaultValuesFromQueryParams = function () {
         // inputs
         var firstName = document.querySelector("#givenName");
         var lastName = document.querySelector("#surname");
