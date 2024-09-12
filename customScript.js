@@ -8,10 +8,10 @@ var applyB2CAddOns = function() {
 
     // inputs
     var firstName = document.querySelector("#givenName");
+    console.log(firstName.value);
 
     // populate the fields with decoded values
     if (firstName) {
-        console.log(firstName.value);
         firstName.value = atob(firstName.value);
         console.log(firstName.value);
     }
