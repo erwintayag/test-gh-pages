@@ -8,7 +8,7 @@ var applyB2CAddOns = function() {
 
     // inputs
     var firstName = document.querySelector("#givenName");
-    console.log(firstName.value);
+    console.log(firstName);
 
     // populate the fields with decoded values
     if (firstName) {
