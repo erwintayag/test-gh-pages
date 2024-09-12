@@ -1,17 +1,18 @@
 var applyB2CAddOns = function() {
 
     var verifyCodeBtn = document.querySelector(".verifyButton");
-    var sendNewCodeBtn = document.querySelector(".sendButton");
+    var defaultBtn = document.querySelector(".defaultButton");
     var changeEmailBtn = document.querySelector(".editButton");
+    var sendCodeBtn = document.querySelector(".sendButton");
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
 
     // inputs
     var firstName = document.querySelector("#givenName");
-    console.log(firstName);
 
     // populate the fields with decoded values
     if (firstName) {
+        console.log(firstName.value);
         firstName.value = atob(firstName.value);
         console.log(firstName.value);
     }
@@ -19,6 +20,15 @@ var applyB2CAddOns = function() {
     // Make sure always remove the continue button if it exists.
     if (continueBtn) {
         continueBtn.remove();
+    }
+
+    // Make sure always remove the default button if it exists.
+    if (defaultBtn) {
+        defaultBtn.remove();
+    }
+
+    if (sendCodeBtn) {
+        sendCodeBtn.show();
     }
 
     var readyToRedirect = false;
