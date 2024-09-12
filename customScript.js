@@ -3,9 +3,9 @@ var applyB2CAddOns = function() {
     var verifyCodeBtn = document.querySelector(".verifyButton");
     var defaultBtn = document.querySelector(".defaultButton");
     var changeEmailBtn = document.querySelector(".editButton");
-    var sendCodeBtn = document.querySelector(".sendButton");
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
+    var sendCodeBtn = document.querySelector("#email_ver_but_send");
 
     // inputs
     var firstName = document.querySelector("#givenName");
@@ -27,8 +27,8 @@ var applyB2CAddOns = function() {
         defaultBtn.remove();
     }
 
-    if (sendCodeBtn) {
-        sendCodeBtn.show();
+    if (sendCodeBtn && changeEmailBtn.style.display === "none") {
+        sendCodeBtn.style.display = "block";
     }
 
     var readyToRedirect = false;
