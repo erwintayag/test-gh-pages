@@ -99,16 +99,28 @@ var applyB2CAddOns = function() {
         var phoneNumber = document.querySelector("#inputPhoneNumber");
     
         var queryParams = new URLSearchParams(window.location.search);
-        var firstNameValue = queryParams.get('first_name');
-        if (firstNameValue) {
-            // firstName.value = decodeURIComponent(firstNameValue);
-            console.log("test:" + firstNameValue);
-            firstName.value = decodeURIComponent(firstNameValue);
-        }
-    
-        // if (firstName) {
-        //     firstName.value = atob(firstName.value);
+        // var firstNameValue = queryParams.get('first_name');
+        // if (firstNameValue) {
+        //     // firstName.value = decodeURIComponent(firstNameValue);
+        //     console.log("test:" + firstNameValue);
+        //     firstName.value = decodeURIComponent(firstNameValue);
         // }
+    
+        if (firstName) {
+            firstName.value = atob(firstName.value);
+        }
+
+        if (lastName) {
+            lastName.value = atob(lastName.value);
+        }
+
+        if (countryCode) {
+            countryCode.value = atob(countryCode.value);
+        }
+
+        if (phoneNumber) {
+            phoneNumber.value = atob(phoneNumber.value);
+        }
     }
 };
 
