@@ -16,7 +16,7 @@ var applyB2CAddOns = function() {
     decodeDefaultValuesFromQueryParams();
 
     // `txtReadOnlyEmail` is only available in the User details page where the Continue button SHOULD be available.
-    if (continueBtn && txtReadOnlyEmail === 'undefined') {
+    if (continueBtn && (txtReadOnlyEmail === 'undefined' || txtReadOnlyEmail === null)) {
         continueBtn.style.display = "none";
     } else {
         continueBtn.style.display = "block";
