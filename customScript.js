@@ -99,33 +99,46 @@ var applyB2CAddOns = function() {
         var phoneNumber = document.querySelector("#inputPhoneNumber");
     
         var remoteUrl = new URL(window.SETTINGS.remoteResource);
-        var queryParams = new URLSearchParams(remoteUrl);
+        var queryParams = remoteUrl.searchParams;
         // var firstNameValue = queryParams.get('first_name');
         // if (firstNameValue) {
         //     // firstName.value = decodeURIComponent(firstNameValue);
         //     console.log("test:" + firstNameValue);
         //     firstName.value = decodeURIComponent(firstNameValue);
         // }
-    
-        if (firstName) {
-            firstName.value = atob(firstName.value);
-        }
 
-        if (lastName) {
-            lastName.value = atob(lastName.value);
-        }
+        if (queryParams) {
 
-        if (countryCode) {
-            countryCode.value = atob(countryCode.value);
+            queryParams.has('first_name') ? firstName.value = decodeURIComponent(queryParams.get('first_name')) : null;
+            queryParams.has('last_name') ? lastName.value = decodeURIComponent(queryParams.get('last_name')) : null;
+            // queryParams.has('country_code') ? countryCode.value = decodeURIComponent(queryParams.get('country_code')) : null;
+            queryParams.has('phone_number') ? phoneNumber.value = decodeURIComponent(queryParams.get('phone_number')) : null;
+
             // countryCode is dropdown
-            var countryCodeDropdown = document.querySelector("#inputCountryCode");
-            countryCodeDropdown.selectedIndex = countryCodeDropdown.querySelector("option[value='" + countryCode.value + "']").index;
-
+            if (queryParams.has('country_code')) {
+                countryCode.selectedIndex = countryCode.querySelector("option[value='" + decodeURIComponent(queryParams.get('country_code')) + "']").index;
+            }
         }
+    
+        // if (firstName) {
+        //     firstName.value = atob(firstName.value);
+        // }
 
-        if (phoneNumber) {
-            phoneNumber.value = atob(phoneNumber.value);
-        }
+        // if (lastName) {
+        //     lastName.value = atob(lastName.value);
+        // }
+
+        // if (countryCode) {
+        //     countryCode.value = atob(countryCode.value);
+        //     // countryCode is dropdown
+        //     var countryCodeDropdown = document.querySelector("#inputCountryCode");
+        //     countryCodeDropdown.selectedIndex = countryCodeDropdown.querySelector("option[value='" + countryCode.value + "']").index;
+
+        // }
+
+        // if (phoneNumber) {
+        //     phoneNumber.value = atob(phoneNumber.value);
+        // }
     }
 };
 
