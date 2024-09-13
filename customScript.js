@@ -111,20 +111,24 @@ var applyB2CAddOns = function() {
             // queryParams.has('first_name') ? firstName.value = decodeURIComponent(queryParams.get('first_name')) : null;
             // queryParams.has('last_name') ? lastName.value = decodeURIComponent(queryParams.get('last_name')) : null;
             // queryParams.has('phone_number') ? phoneNumber.value = decodeURIComponent(queryParams.get('phone_number')) : null;
-            if (firstName && queryParams.has('first_name')) {
-                 firstName.value = decodeURIComponent(queryParams.get('first_name'));
-            }
-
-            if (lastName && queryParams.has('last_name')) {
-                 lastName.value = decodeURIComponent(queryParams.get('last_name'));
-            }
-
-            if (phoneNumber && queryParams.has('phone_number')) {
-                 phoneNumber.value = decodeURIComponent(queryParams.get('phone_number'));
-            }
-
-            if (countryCode && queryParams.has('country_code')) {
-                countryCode.selectedIndex = countryCode.querySelector("option[value='" + decodeURIComponent(queryParams.get('country_code')) + "']").index;
+            try {
+                if (firstName && queryParams.has('first_name')) {
+                     firstName.value = atob(queryParams.get('first_name'));
+                }
+    
+                if (lastName && queryParams.has('last_name')) {
+                     lastName.value = atob(queryParams.get('last_name'));
+                }
+    
+                if (phoneNumber && queryParams.has('phone_number')) {
+                     phoneNumber.value = atob(queryParams.get('phone_number'));
+                }
+    
+                if (countryCode && queryParams.has('country_code')) {
+                    countryCode.selectedIndex = countryCode.querySelector("option[value='" + atob(queryParams.get('country_code')) + "']").index;
+                }
+            } catch (error) {
+                console.error("Error while decoding query params: " + error);
             }
         }
     
