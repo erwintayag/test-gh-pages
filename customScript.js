@@ -14,9 +14,9 @@ var applyB2CAddOns = function() {
     // populate the fields with decoded values
     decodeDefaultValuesFromQueryParams();
 
-    // Make sure always remove the continue button if it exists.
+    // Hide the continue button in the first Sign Up screen.
     if (continueBtn) {
-        continueBtn.remove();
+        continueBtn.style.display = "none";
     }
 
     // Make sure always remove the default button if it exists.
@@ -128,6 +128,11 @@ var applyB2CAddOns = function() {
     
                 if (countryCode && queryParams.has('country_code')) {
                     countryCode.selectedIndex = countryCode.querySelector("option[value='" + atob(queryParams.get('country_code')) + "']").index;
+                }
+
+                // Show the continue button in the second Sign Up screen.
+                if (continueBtn) {
+                    continueBtn.style.display = "block";
                 }
             } catch (error) {
                 console.error("Error while decoding query params: " + error);
