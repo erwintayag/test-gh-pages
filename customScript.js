@@ -35,31 +35,29 @@ var applyB2CAddOns = function() {
 
     var failedToRedirect = false;
 
-    if ($element) {
-        // Overriding following two methods so that we can detect the failure calling these two methods.
-        $element.onError = function (code, message, isSendingQuietly) {
-            if (isSendingQuietly) {
-                $diags.sendQuietDiagnostics(code, message);
-            } else {
-                $diags.sendDiagnostics(code, message);
-            }
-            failedToRedirect = true;
-            return false;
+    // Overriding following two methods so that we can detect the failure calling these two methods.
+    $element.onError = function (code, message, isSendingQuietly) {
+        if (isSendingQuietly) {
+            $diags.sendQuietDiagnostics(code, message);
+        } else {
+            $diags.sendDiagnostics(code, message);
+        }
+        failedToRedirect = true;
+        return false;
+    }
+
+    // Sets error message and shows it to the user.
+    $element.setAndShowErrorMessage = function (id, msg) {
+        var $id = $("#" + id);
+
+        if (msg) {
+            $id.text(msg);
         }
 
-        // Sets error message and shows it to the user.
-        $element.setAndShowErrorMessage = function (id, msg) {
-            var $id = $("#" + id);
+        // Add the aria attributes and tabindex allowing the message to receive focus
+        $id.attr({ "role": "alert", "aria-live": "polite", "aria-hidden": "false", "tabindex": "1" }).css("display", "block");
 
-            if (msg) {
-                $id.text(msg);
-            }
-
-            // Add the aria attributes and tabindex allowing the message to receive focus
-            $id.attr({ "role": "alert", "aria-live": "polite", "aria-hidden": "false", "tabindex": "1" }).css("display", "block");
-
-            failedToRedirect = true;
-        }
+        failedToRedirect = true;
     }
     
     // Adding auto submission once found it is a email verification page.
