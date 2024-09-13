@@ -10,13 +10,16 @@ var applyB2CAddOns = function() {
     var cancelBtn = document.querySelector("#cancel");
     var continueBtn = document.querySelector("#continue");
     var sendCodeBtn = document.querySelector("#email_ver_but_send");
+    var txtReadOnlyEmail = document.querySelector("#readonlyEmail");
 
     // populate the fields with decoded values
     decodeDefaultValuesFromQueryParams();
 
-    // Hide the continue button in the first Sign Up screen.
-    if (continueBtn) {
+    // `txtReadOnlyEmail` is only available in the User details page where the Continue button SHOULD be available.
+    if (continueBtn && txtReadOnlyEmail === 'undefined') {
         continueBtn.style.display = "none";
+    } else {
+        continueBtn.style.display = "block";
     }
 
     // Make sure always remove the default button if it exists.
@@ -84,12 +87,6 @@ var applyB2CAddOns = function() {
                 if (readyToRedirect) {
                     clearInterval(confirmInterval);
                     clearInterval(failedInterval);
-
-                    // Show the continue button in the second Sign Up screen.
-                    if (continueBtn) {
-                        continueBtn.style.display = "block";
-                    }
-                    
                     $i2e.redirectToServer("confirmed");
                 }
             }, 50);
@@ -108,10 +105,10 @@ var applyB2CAddOns = function() {
 
     function decodeDefaultValuesFromQueryParams() {
         // page controls
-        var firstName = document.querySelector("#givenName");
-        var lastName = document.querySelector("#surname");
-        var countryCode = document.querySelector("#inputCountryCode");
-        var phoneNumber = document.querySelector("#inputPhoneNumber");
+        var txtFirstName = document.querySelector("#givenName");
+        var txtLastName = document.querySelector("#surname");
+        var ddlCountryCode = document.querySelector("#inputCountryCode");
+        var txtPhoneNumber = document.querySelector("#inputPhoneNumber");
     
         // get the query params
         // window.SETTINGS - https://learn.microsoft.com/en-us/azure/active-directory-b2c/javascript-and-page-layout?pivots=b2c-custom-policy
@@ -120,20 +117,21 @@ var applyB2CAddOns = function() {
 
         if (queryParams) {
             try {
-                if (firstName && queryParams.has('first_name')) {
-                     firstName.value = atob(queryParams.get('first_name'));
+                if (txtFirstName && queryParams.has('first_name')) {
+                     txtFirstName.value = atob(queryParams.get('first_name'));
                 }
     
-                if (lastName && queryParams.has('last_name')) {
-                     lastName.value = atob(queryParams.get('last_name'));
+                if (txtLastName && queryParams.has('last_name')) {
+                    txtLastName.value = atob(queryParams.get('last_name'));
                 }
     
-                if (phoneNumber && queryParams.has('phone_number')) {
-                     phoneNumber.value = atob(queryParams.get('phone_number'));
+                if (txtPhoneNumber && queryParams.has('phone_number')) {
+                    txtPhoneNumber.value = atob(queryParams.get('phone_number'));
                 }
     
-                if (countryCode && queryParams.has('country_code')) {
-                    countryCode.selectedIndex = countryCode.querySelector("option[value='" + atob(queryParams.get('country_code')) + "']").index;
+                if (ddlCountryCode && queryParams.has('country_code')) {
+                    var decodedCountryCode = atob(queryParams.get('country_code'));
+                    ddlCountryCode.selectedIndex = ddlCountryCode.querySelector("option[value='" + decodedCountryCode + "']").index;
                 }
             } catch (error) {
                 console.error("Error while decoding query params: " + error);
