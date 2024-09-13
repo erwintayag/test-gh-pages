@@ -108,15 +108,13 @@ var applyB2CAddOns = function() {
         // }
 
         if (queryParams) {
-
-            queryParams.has('first_name') ? firstName.value = decodeURIComponent(queryParams.get('first_name')) : null;
-            queryParams.has('last_name') ? lastName.value = decodeURIComponent(queryParams.get('last_name')) : null;
-            // queryParams.has('country_code') ? countryCode.value = decodeURIComponent(queryParams.get('country_code')) : null;
-            queryParams.has('phone_number') ? phoneNumber.value = decodeURIComponent(queryParams.get('phone_number')) : null;
+            queryParams.has('first_name') ? firstName?.value = decodeURIComponent(queryParams.get('first_name')) : null;
+            queryParams.has('last_name') ? lastName?.value = decodeURIComponent(queryParams.get('last_name')) : null;
+            queryParams.has('phone_number') ? phoneNumber?.value = decodeURIComponent(queryParams.get('phone_number')) : null;
 
             // countryCode is dropdown
             if (queryParams.has('country_code')) {
-                countryCode.selectedIndex = countryCode.querySelector("option[value='" + decodeURIComponent(queryParams.get('country_code')) + "']").index;
+                countryCode.selectedIndex = countryCode?.querySelector("option[value='" + decodeURIComponent(queryParams.get('country_code')) + "']").index;
             }
         }
     
