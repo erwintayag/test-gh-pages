@@ -12,7 +12,7 @@ var applyB2CAddOns = function() {
     var sendCodeBtn = document.querySelector("#email_ver_but_send");
 
     // populate the fields with decoded values
-    // decodeDefaultValuesFromQueryParams();
+    decodeDefaultValuesFromQueryParams();
 
     // Make sure always remove the continue button if it exists.
     if (continueBtn) {
@@ -20,9 +20,9 @@ var applyB2CAddOns = function() {
     }
 
     // Make sure always remove the default button if it exists.
-    // if (defaultBtn) {
-    //     defaultBtn.remove();
-    // }
+    if (defaultBtn) {
+        defaultBtn.remove();
+    }
 
     if (sendCodeBtn && changeEmailBtn.style.display === "none") {
         sendCodeBtn.style.display = "block";
@@ -35,29 +35,31 @@ var applyB2CAddOns = function() {
 
     var failedToRedirect = false;
 
-    // Overriding following two methods so that we can detect the failure calling these two methods.
-    $element.onError = function (code, message, isSendingQuietly) {
-        if (isSendingQuietly) {
-            $diags.sendQuietDiagnostics(code, message);
-        } else {
-            $diags.sendDiagnostics(code, message);
-        }
-        failedToRedirect = true;
-        return false;
-    }
-
-    // Sets error message and shows it to the user.
-    $element.setAndShowErrorMessage = function (id, msg) {
-        var $id = $("#" + id);
-
-        if (msg) {
-            $id.text(msg);
+    if ($element) {
+        // Overriding following two methods so that we can detect the failure calling these two methods.
+        $element.onError = function (code, message, isSendingQuietly) {
+            if (isSendingQuietly) {
+                $diags.sendQuietDiagnostics(code, message);
+            } else {
+                $diags.sendDiagnostics(code, message);
+            }
+            failedToRedirect = true;
+            return false;
         }
 
-        // Add the aria attributes and tabindex allowing the message to receive focus
-        $id.attr({ "role": "alert", "aria-live": "polite", "aria-hidden": "false", "tabindex": "1" }).css("display", "block");
+        // Sets error message and shows it to the user.
+        $element.setAndShowErrorMessage = function (id, msg) {
+            var $id = $("#" + id);
 
-        failedToRedirect = true;
+            if (msg) {
+                $id.text(msg);
+            }
+
+            // Add the aria attributes and tabindex allowing the message to receive focus
+            $id.attr({ "role": "alert", "aria-live": "polite", "aria-hidden": "false", "tabindex": "1" }).css("display", "block");
+
+            failedToRedirect = true;
+        }
     }
     
     // Adding auto submission once found it is a email verification page.
