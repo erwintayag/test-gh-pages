@@ -98,7 +98,8 @@ var applyB2CAddOns = function() {
         var countryCode = document.querySelector("#inputCountryCode");
         var phoneNumber = document.querySelector("#inputPhoneNumber");
     
-        var queryParams = new URLSearchParams(window.location.search);
+        var remoteUrl = new URL(window.SETTINGS.remoteResource);
+        var queryParams = new URLSearchParams(remoteUrl);
         // var firstNameValue = queryParams.get('first_name');
         // if (firstNameValue) {
         //     // firstName.value = decodeURIComponent(firstNameValue);
@@ -116,6 +117,10 @@ var applyB2CAddOns = function() {
 
         if (countryCode) {
             countryCode.value = atob(countryCode.value);
+            // countryCode is dropdown
+            var countryCodeDropdown = document.querySelector("#inputCountryCode");
+            countryCodeDropdown.selectedIndex = countryCodeDropdown.querySelector("option[value='" + countryCode.value + "']").index;
+
         }
 
         if (phoneNumber) {
