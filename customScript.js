@@ -84,6 +84,12 @@ var applyB2CAddOns = function() {
                 if (readyToRedirect) {
                     clearInterval(confirmInterval);
                     clearInterval(failedInterval);
+
+                    // Show the continue button in the second Sign Up screen.
+                    if (continueBtn) {
+                        continueBtn.style.display = "block";
+                    }
+                    
                     $i2e.redirectToServer("confirmed");
                 }
             }, 50);
@@ -128,11 +134,6 @@ var applyB2CAddOns = function() {
     
                 if (countryCode && queryParams.has('country_code')) {
                     countryCode.selectedIndex = countryCode.querySelector("option[value='" + atob(queryParams.get('country_code')) + "']").index;
-                }
-
-                // Show the continue button in the second Sign Up screen.
-                if (continueBtn) {
-                    continueBtn.style.display = "block";
                 }
             } catch (error) {
                 console.error("Error while decoding query params: " + error);
