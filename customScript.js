@@ -20,9 +20,9 @@ var applyB2CAddOns = function() {
     }
 
     // Make sure always remove the default button if it exists.
-    if (defaultBtn) {
-        defaultBtn.remove();
-    }
+    // if (defaultBtn) {
+    //     defaultBtn.remove();
+    // }
 
     if (sendCodeBtn && changeEmailBtn.style.display === "none") {
         sendCodeBtn.style.display = "block";
