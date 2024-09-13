@@ -12,7 +12,7 @@ var applyB2CAddOns = function() {
     var sendCodeBtn = document.querySelector("#email_ver_but_send");
 
     // populate the fields with decoded values
-    decodeDefaultValuesFromQueryParams();
+    // decodeDefaultValuesFromQueryParams();
 
     // Make sure always remove the continue button if it exists.
     if (continueBtn) {
